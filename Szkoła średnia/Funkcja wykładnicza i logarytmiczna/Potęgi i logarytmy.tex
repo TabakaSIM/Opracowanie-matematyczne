@@ -7,6 +7,8 @@
 \usepackage{graphicx}		%Grafika
 \usepackage{wrapfig}		%Grafika obok textu
 \usepackage{float}			%Allows H in fugire
+\usepackage{xcolor}     	% for colour
+\usepackage{mdframed}   	% for framing
 %\pagestyle{empty} 			%usuwa nr strony
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
@@ -86,6 +88,66 @@
 	
 	
 	\newpage
+	\begin{itemize}
+		\item Logarytmy można zdefiniować w następujący sposób:
+	
+	\begin{mdframed}[%
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=\topskip,%
+		%shadowsize=0,%
+		innertopmargin=10,%
+		innerbottommargin=10,%
+		leftmargin=10,%
+		rightmargin=10,%
+		%backgroundcolor=gray!20,%
+		%innertopmargin=0pt,
+		]
+	\centering	$\log_ab = c\qquad\qquad$ wtedy i tylko wtedy, gdy $\qquad\qquad a^c=b$
+		
+		
+	\end{mdframed}
+
+	\item W szczególności logarytmy można liczyć za pomoca wzorów:
+	
+	\begin{mdframed}[%
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=\topskip,%
+		%shadowsize=0,%
+		innertopmargin=0,%
+		innerbottommargin=10,%
+		leftmargin=10,%
+		rightmargin=10,%
+		%backgroundcolor=gray!20,%
+		%innertopmargin=0pt,
+		]
+		\centering	$$\log_aa^x=x \qquad\qquad\qquad\qquad\log_{a^y}a^x=\frac{x}{y}$$
+		
+	\end{mdframed}
+
+	\item Z pozostałych wzorów przydadzą się:
+	
+	\begin{mdframed}[%
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=\topskip,%
+		%shadowsize=0,%
+		innertopmargin=0,%
+		innerbottommargin=10,%
+		leftmargin=10,%
+		rightmargin=10,%
+		%backgroundcolor=gray!20,%
+		%innertopmargin=0pt,
+		]
+		 \begin{tabular}{p{7cm} p{7cm}}
+			\centering\item $\log_ax+\log_ay=\log_ax\cdot y$& \item $\log_ax-\log_ay=\log_a\frac{x}{y}$ \\
+			
+		\end{tabular}
+		$$\log_ax^r=r\cdot\log_ax$$
+	\end{mdframed}
+
+	\end{itemize}
 	
 	\item Oblicz:
 	
@@ -109,6 +171,40 @@
 			\item $\log_6\sqrt{216}=$& \item$\log_{3\sqrt[3]{3}}\sqrt{3}=$ \\
 			\item $\log_5125\sqrt{5}=$& \item$\log_{3\sqrt{3}}81\sqrt[5]{3}=$ \\
 			
+	\end{tabular} \end{enumerate}
+
+	\newpage
+	
+	\item Wyznacz "x":
+	
+	\begin{enumerate}[a)] \begin{tabular}{p{7cm} p{7cm}}
+			\item $\log_{0,5}x=-1$& \vspace{0.4cm}\item $\log_3x=3$ \\
+			\item $\log_x16=4$& \item$\log_\frac{1}{3}x=2$ \\
+			\item $\log_x8=-3$& \item$\log_x\sqrt{3}=1$ \\
+			\item $\log_7x=0$& \item$\log_x4\sqrt{2}=-5$ \\
+			
+	\end{tabular} \end{enumerate}
+
+	\item Oblicz:
+	
+	\begin{enumerate}[a)] 
+		\item $\log_248-\log_23=$
+		\item $\log_3\frac{1}{4}+\log_31\frac{1}{3}=$
+		\item $\log_{\sqrt{2}}50 - \log_{\sqrt{2}}25=$
+		\item $\log_\frac{3}{2}9-2\log_\frac{2}{3}2=$
+		\item $\log_48+\log_93-\log_61=$
+		\item $\log_34+\log_36-\log_38=$
+		\item $2\log_\frac{1}{4}8 - 3\log_{\sqrt{3}}9=$
+		\item $\log_2(\log_2(\log_24))=$	
+		\item $\log_5(\sqrt{5\cdot\sqrt[3]{5}})=$
+		
+	\end{enumerate}
+
+	\item Naszkicuj wykres funkcji logarytmicznej:
+	
+	\begin{enumerate}[a)] \begin{tabular}{p{7cm} p{7cm}}
+			\item $f(x)=\log_2x$& \vspace{0.4cm}\item $g(x)=\log_\frac{1}{3}x$ \\
+			\item $h(x)=\log_2(x-3)+2$& \item$i(x)=\log_2(\frac{1}{x})$ \\
 	\end{tabular} \end{enumerate}
 		
 	\end{enumerate}

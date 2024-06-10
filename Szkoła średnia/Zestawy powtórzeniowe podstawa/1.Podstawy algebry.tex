@@ -14,11 +14,9 @@
 \usepackage{ntheorem}   	% for theorem-like environments
 \usepackage{mdframed}   	% for framing
 \usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
-
-\newcommand\uwaga[1]{\textcolor{orange}{#1}}
-\newcommand\TODO[1]{\textcolor{red}{#1}}
 
 \theoremstyle{break}
 \theoreminframepreskip{0.5cm}
@@ -34,6 +32,27 @@ rightmargin=10,%
 backgroundcolor=gray!20,%
 innertopmargin=0pt,%
 ntheorem]{zad}{Zadanie}
+
+\mdfdefinestyle{zad}{
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,
+}
+\mdfdefinestyle{wzor}{
+	linecolor=cyan,%
+	linewidth=2pt,%
+	innertopmargin=\topskip,%
+	innertopmargin=10,%
+	innerbottommargin=10,%
+	leftmargin=10,%
+	rightmargin=10,%
+}
 
 \begin{document}
 	
@@ -77,7 +96,7 @@ ntheorem]{zad}{Zadanie}
 		Rozpisz korzystając ze wzorów skróconego mnożenia:
 	\end{zad}
 
-		\begin{enumerate}[a)] \begin{tabular}{p{8cm} p{8cm}} 
+	\begin{enumerate}[a)] \begin{tabular}{p{8cm} p{8cm}} 
 			\item $(x+2y)^2+(x-2y)^2$ & \vspace{0.25cm}\item$(3x-4)^2-(3x+4)^2$ \\
 			\item $(5x-3y)^2+(3x-5y)^2$ & \item $(x+\frac{1}{2}y)(x-\frac{1}{2}y)-(\frac{1}{2}y-x)(x+\frac{1}{2}y)$ \\
 			\item $(2\sqrt{2}-8)^2-(3\sqrt{3}+2\sqrt{2})^2$ & \item $(\sqrt{5}-2\sqrt{2})(2\sqrt{2}+\sqrt{5})-(4\sqrt{3}+2\sqrt{2})^2$ \\
@@ -121,41 +140,35 @@ ntheorem]{zad}{Zadanie}
 
 	\newpage
 
-\begin{center}
+	\begin{center}
 	\LARGE Zbiór zadań - podstawy algebry
-\end{center}
-		\begin{mdframed}[%
-		linecolor=white,%
-		innertopmargin=\topskip,
-		shadowsize=0,%
-		innertopmargin=5,%
-		innerbottommargin=5,%
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor=gray!20,%
-		innertopmargin=0pt,]
+	\end{center}
+	\begin{mdframed}[style=wzor]
+		\begin{tabular}{p{7cm} p{7cm}}
+			\centering$(a+b)^2=a^2+2ab+b^2$&
+			\centering$(a-b)^2=a^2-2ab+b^2$\\
+		\end{tabular}
+		$$(a-b)(a+b)=a^2-b^2$$
+	\end{mdframed}
+
+	\begin{mdframed}[style=zad]
 		\vspace{0.2cm}
-		\textbf{1.} Rozwiąż równania:
+		\textbf{1.} Rozwiąż równania: \pdfcomment[timezone=+01'00',icon=Help,color=yellow]{Podpowiedź: Uważaj na minusy!}
 	\end{mdframed}
 
 	\begin{enumerate}[a)] \begin{tabular}{p{7cm} p{7cm}} 
 		\item $2(x-3)=3(x+5)$ & \vspace{0.25cm} 	\item$4(x+4)-2(3x-5)=8$ \\
-		\item $2(x-3)-3(6+x)=6-(3+x)$ & \item $2-x<x+7$ \\
-		\item $3x+5(x-3)\geq 14-(x+4)$ & \item $\frac{x-1}{2}+\frac{1}{4}(x-1)=9$ \\
-		\item $\frac{1}{3}(x+3)+\frac{x}{5} - x < 4 - \frac{x-3}{15}$ & \item $\frac{2x+5}{3}-\frac{x-7}{6}$> $\frac{1}{2}$ \\
-		\item $2(x-3)<\frac{2-x}{3}+\frac{3}{2}(x-5)$ & \item $\frac{1}{2}(x-3)-\frac{6+x}{3}<\frac{x}{6}$ \\
+		\item $2(x-3)-3(6+x)=6-(3+x)$ & 
+		\item $2-x<x+7$ \\
+		\item $3x+5(x-3)\geq 14-(x+4)$ & 
+		\item $\frac{x-1}{2}+\frac{1}{4}(x-1)=9$ \\
+		\item $\frac{1}{3}(x+3)+\frac{x}{5} - x < 4 - \frac{x-3}{15}$ & 
+		\item $\frac{2x+5}{3}-\frac{x-7}{6}$> $\frac{1}{2}$ \\
+		\item $2(x-3)<\frac{2-x}{3}+\frac{3}{2}(x-5)$ & 
+		\item $\frac{1}{2}(x-3)-\frac{6+x}{3}<\frac{x}{6}$ \\
 	\end{tabular} \end{enumerate}
 
-			\begin{mdframed}[%
-		linecolor=white,%
-		innertopmargin=\topskip,
-		shadowsize=0,%
-		innertopmargin=5,%
-		innerbottommargin=5,%
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor=gray!20,%
-		innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 		\vspace{0.2cm}
 		\textbf{2.} Rozpisz korzystając ze wzorów skróconego mnożenia:
 	\end{mdframed}
@@ -170,18 +183,9 @@ ntheorem]{zad}{Zadanie}
 		\item $(x^2-4)(x^2+4)$ & \item $(4a+7b)(7b-4a)$ &\item $(-x-2y)(2y-x)$\\
 \end{tabular} \end{enumerate}
 
-			\begin{mdframed}[%
-	linecolor=white,%
-	innertopmargin=\topskip,
-	shadowsize=0,%
-	innertopmargin=5,%
-	innerbottommargin=5,%
-	leftmargin=10,%
-	rightmargin=10,%
-	backgroundcolor=gray!20,%
-	innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 	\vspace{0.2cm}
-	\textbf{3.} Rozpisz korzystając ze wzorów skróconego mnożenia:
+	\textbf{3.} Rozpisz korzystając ze wzorów skróconego mnożenia:\pdfcomment[timezone=+01'00',icon=Help,color=yellow]{Podpowiedź: Uważaj na minusy przed nawiasami!}
 \end{mdframed}
 
 	\begin{enumerate}[a)] \begin{tabular}{p{8cm} p{8cm}} 
@@ -190,18 +194,9 @@ ntheorem]{zad}{Zadanie}
 		\item $(\sqrt{2}+2)^2+(\sqrt{3}-3)^2$ & \item $(2-\sqrt{5})(2+\sqrt{5})-(2-\sqrt{5})^2$ \\
 	\end{tabular} \end{enumerate}
 	\newpage
-				\begin{mdframed}[%
-		linecolor=white,%
-		innertopmargin=\topskip,
-		shadowsize=0,%
-		innertopmargin=5,%
-		innerbottommargin=5,%
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor=gray!20,%
-		innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 		\vspace{0.2cm}
-		\textbf{4.} Usuń niewymierność z podanych wyrażeń:
+		\textbf{4.} Usuń niewymierność z podanych wyrażeń:\pdfcomment[timezone=+01'00',icon=Help,color=yellow]{Podpowiedź: podpunty a,b,c wymnoz przez pierwiastek, natomiast pozostale wynóż ze wzoru skróconego mnożenia - 3 wzór}
 	\end{mdframed}
 	
 	\begin{enumerate}[a)] \begin{tabular}{p{5cm} p{5cm} p{5cm}} 
@@ -210,47 +205,29 @@ ntheorem]{zad}{Zadanie}
 			\item \Large$\frac{2+\sqrt{5}}{\sqrt{5}-1}$ & \item \Large$\frac{\sqrt{2}+3}{3-\sqrt{2}}$ &\item \Large$\frac{5+\sqrt{3}}{3+\sqrt{5}}$\\
 	\end{tabular} \end{enumerate}
 	
-					\begin{mdframed}[%
-		linecolor=white,%
-		innertopmargin=\topskip,
-		shadowsize=0,%
-		innertopmargin=5,%
-		innerbottommargin=5,%
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor=gray!20,%
-		innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 		\vspace{0.2cm}
-		\textbf{4.} Poniżej przedstawiono interpretację geometryczną w postaci przedziału pewnej nierówności:
+		\textbf{4.}\textbf{(Jednokrotnego wyboru)} Poniżej przedstawiono interpretację geometryczną w postaci przedziału pewnej nierówności:
 	\end{mdframed}
 
-	\begin{figure}[h]
-		\centering
-		\includegraphics[scale=0.5]{z1_1.jpeg}
-	\end{figure}
-	
-	Nierówność opisującą ten przedział można opisać za pomocą:
-	
-		\vspace{0.5cm}
-	\begin{tabular}{p{5cm} p{5cm}}
-		\textbf{A. }$|x+6|\leq3$&
-		\textbf{B. }$|x-6|\leq3$\\
-		\textbf{C. }$|x+6|\geq3$&
-		\textbf{D. }$|x-6|\geq3$\\
-	\end{tabular}
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{z1_1.jpeg}
+\end{figure}
 
-					\begin{mdframed}[%
-	linecolor=white,%
-	innertopmargin=\topskip,
-	shadowsize=0,%
-	innertopmargin=5,%
-	innerbottommargin=5,%
-	leftmargin=10,%
-	rightmargin=10,%
-	backgroundcolor=gray!20,%
-	innertopmargin=0pt,]
+Nierówność opisującą ten przedział można opisać za pomocą:
+
+\vspace{0.5cm}
+\begin{tabular}{p{5cm} p{5cm}}
+	\textbf{A. }$|x+6|\leq3$&
+	\textbf{B. }$|x-6|\leq3$\\
+	\textbf{C. }$|x+6|\geq3$&
+	\textbf{D. }$|x-6|\geq3$\\
+\end{tabular}
+
+\begin{mdframed}[style=zad]
 	\vspace{0.2cm}
-	\textbf{5.} Nierówność $|x-2|>4$ można przedstawić za pomocą przedziału:
+	\textbf{5.}$  $\textbf{(Jednokrotnego wyboru)} Nierówność $|x-2|>4$ można przedstawić za pomocą przedziału:
 \end{mdframed}
 
 \begin{figure}[h]
@@ -262,9 +239,9 @@ ntheorem]{zad}{Zadanie}
 	\end{subfigure}$\quad$
 	\begin{subfigure}[b]{0.45\textwidth}
 		\Large \textbf{B}
-	\includegraphics[width=\textwidth]{z1_2_2.jpeg}
-	
-\end{subfigure}
+		\includegraphics[width=\textwidth]{z1_2_2.jpeg}
+		
+	\end{subfigure}
 \end{figure}
 \begin{figure}[h]
 	\centering
@@ -279,32 +256,13 @@ ntheorem]{zad}{Zadanie}
 	\end{subfigure}
 \end{figure}
 
-					\begin{mdframed}[%
-	linecolor=white,%
-	innertopmargin=\topskip,
-	shadowsize=0,%
-	innertopmargin=5,%
-	innerbottommargin=5,%
-	leftmargin=10,%
-	rightmargin=10,%
-	backgroundcolor=gray!20,%
-	innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 	\vspace{0.2cm}
-	\textbf{6.} Udowodnij, że liczba $$(2x+1)^2-(x+1)^2+x$$ jest podzielna przez 6.
+	\textbf{6.} Udowodnij, że liczba $$(2x+1)^2-(x+1)^2+x$$ jest podzielna przez 6. \pdfcomment[timezone=+01'00',icon=Help,color=yellow]{Podpowiedź: Rozpisz, a natępnie porównaj z zadaniem 5 i 7}
 \end{mdframed}
 
-					\begin{mdframed}[%
-	linecolor=white,%
-	innertopmargin=\topskip,
-	shadowsize=0,%
-	innertopmargin=5,%
-	innerbottommargin=5,%
-	leftmargin=10,%
-	rightmargin=10,%
-	backgroundcolor=gray!20,%
-	innertopmargin=0pt,]
+\begin{mdframed}[style=zad]
 	\vspace{0.2cm}
-	\textbf{7.} Udowodnij, że liczba $$5x^3-5x$$ jest podzielna przez 30.
-\end{mdframed}
-	
+	\textbf{7.} Udowodnij, że liczba $$5x^3-5x$$ jest podzielna przez 30. \pdfcomment[timezone=+01'00',icon=Help,color=yellow]{Podpowiedź: Wycianij przed nawias co sie da, a natepnie to co zostanie w nawiasie rozpisz ze wzoru skroconego mnozenia}
+\end{mdframed} 
 \end{document}

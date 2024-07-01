@@ -1,0 +1,77 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+\theoremstyle{break}
+\theoreminframepreskip{0.5cm}
+\theoremheaderfont{\bfseries}
+\newmdtheoremenv[%
+linecolor=white,%
+innertopmargin=\topskip,
+shadowsize=0,%
+innertopmargin=5,%
+innerbottommargin=5,%
+leftmargin=10,%
+rightmargin=10,%
+backgroundcolor=gray!20,%
+innertopmargin=0pt,%
+ntheorem]{zad}{Zadanie}
+
+\mdfdefinestyle{zad}{
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,
+}
+\mdfdefinestyle{wzor}{
+	linecolor=white,%
+	linewidth=2pt,%
+	innertopmargin=\topskip,%
+	innertopmargin=10,%
+	innerbottommargin=10,%
+	leftmargin=10,%
+	rightmargin=10,%
+}
+
+\begin{document}
+	%\begin{mdframed}[style=wzor]
+		\begin{center}\begin{tabular}{|c|c|}
+			\hline
+			Funkcja&Pochodna\\
+			\hline&\\
+			$f(x)=\ln x$&$f'(x)=\frac{1}{x}$ \\
+			&\\\hline
+		\end{tabular}\end{center}
+	%\end{mdframed}
+	\begin{zad}
+		Oblicz pohcodne:
+	\end{zad}
+\begin{enumerate}[a)]
+	\begin{tabular}{p{7cm} p{7cm}}
+		\item \Large$f(x)=\frac{x^2+4x+4}{x^\frac{3}{2}}$ & \vspace{0.5cm} \item $f(x)=e^{x^3}\cdot x^3$\\
+		\item $f(x)=\sqrt{x^2+x+1}$& \item $f(x)=\sin(3x)$\\
+		\item $f(x)=\ln(\ln(x^2))$& \item $f(x)=\sin^2x\cdot\cos^2x$\\
+	\end{tabular}
+\end{enumerate}
+\end{document}

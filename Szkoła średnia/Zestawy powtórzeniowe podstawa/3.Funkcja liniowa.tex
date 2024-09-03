@@ -18,6 +18,7 @@
 \usepackage{xparse}			% New commands with optional arguments
 \usepackage{ifthen}			% If then - funkcje!
 \usepackage{expl3}			% Deklarowanie zmiennych
+\usepackage{ulem}			% Przekreślone litery \sout{}
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
 
@@ -146,6 +147,14 @@
 
 \newcommand{\tg}{\text{tg}}
 \newcommand{\ctg}{\text{ctg}}
+\newcommand{\UkladRownan}[2]{
+	$\left\{
+	\begin{array}{l}
+		#1 \\
+		#2
+	\end{array}
+	\right.$
+}
 
 \begin{document}
 	
@@ -153,7 +162,7 @@
 		\LARGE Funkcja liniowa
 	\end{center}
 
-	\Zadanietwoxthree{Naszkicuj podane proste}
+	\Zadanietwoxthree{Naszkicuj podane proste w \sout{kartezjańskim} układzie współrzędnych:}
 	{$y=2x-3$}{$y=5$}
 	{$y=\frac{2}{3}x+1$}{$y=-x-2$}
 	{$y=-\frac{4}{5}x+3$}{$y=1\frac{1}{2}x-4$}
@@ -181,5 +190,31 @@
 	\Zadanietwoxtwo{Wyznacz parametr "k", dla którego podana prosta przechodzi przez punkt $P=(2,-3)$}
 	{$y=2kx-3$}{$y=(2k+1)x+3k+2$}
 	{$y=(2k-1)x+4x-5$}{$y=\frac{5k+2}{6}x-2k+1$}
+	
+	\newpage
+	\begin{center}
+		\LARGE Zadania maturalne
+	\end{center}
+
+	\counterreset{counter}
+	\ZadanieABCD{Poniżej przedstawiono interpretację geometryczną układu równań.}
+	{\begin{center}
+			\includegraphics[scale=0.3]{3_1_1.png}
+		\end{center}
+		Układ ten da się zapisać w postaci}
+	{\UkladRownan{y=x+5}{y=2x-1}}
+	{\UkladRownan{y=-x+5}{y=2x+2}}
+	{\UkladRownan{y=x-5}{y=\frac{1}{2}x-1}}
+	{\UkladRownan{y=-x-5}{y=\frac{1}{2}x+2}}
+	
+	\ZadanieABCD{Dana jest funkcja liniowa określona wzorem
+	$$y=(m^2-4)x+m-2$$}{nie ma miejsc zerowych kiedy}
+	{m=2}{m=-2}
+	{m=0}{m=$\sqrt{2}$}
+	
+	\Zadanie{Zapisz wartości parametru "m", dla którego funkcja
+	$$y=(2m-3)x+3m-1$$
+	jest niemalejąca.}{
+	\vspace{0.5cm}	\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots\dots}
 	
 \end{document}

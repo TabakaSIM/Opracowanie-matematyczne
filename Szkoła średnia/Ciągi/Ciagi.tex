@@ -1,0 +1,249 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{counter} % Creates a new counter
+	\setcounter{counter}{1} % Sets the counter to 5
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor=gray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Wzor}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\ZadanieTextowe}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Zadanie \counter{counter} } \\
+			#1
+		\end{mdframed}
+	}
+	\newcommand{\Zadanie}[2]{
+		\ZadanieTextowe{#1}
+		#2
+	}
+	\newcommand{\ZadanieABCD}[6]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\
+		\end{tabular}
+	}
+	\newcommand{\ZadanieABCDEF}[8]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\\\
+			\textbf{E. }#7&
+			\textbf{F. }#8\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxtwo}[5]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxthree}[7]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxfour}[9]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+			\textbf{g)} #8&
+			\textbf{h)} #9\\\\
+		\end{tabular}
+	}
+	%}
+
+\newcommand{\tg}{\text{tg}}
+\newcommand{\ctg}{\text{ctg}}
+\newcommand{\UkladRownan}[2]{
+	$\left\{
+	\begin{array}{l}
+		#1 \\
+		#2
+	\end{array}
+	\right.$
+}
+
+\begin{document}
+	\begin{center}
+		\LARGE Ciągi - ogólnie
+	\end{center}
+	\vspace{1cm}
+	
+	
+	
+		\Zadanietwoxthree{Wyznacz 3 kolejne wyrazy podanego ciągu:}
+		{ $1,-2,3,-4,5,-6,\dots $}{$5,7,9,11,13,15,\dots $}{$0,0,0,0,0,0,\dots $}{$0,1,1,2,3,5,8,\dots $}{$0,\frac{1}{2},\frac{2}{3},\frac{3}{4},\frac{4}{5},\dots $}{$1,2,4,8,16,32,\dots $}
+
+		
+		\Zadanietwoxthree{Zapisz wzór na ogólny wyraz ciągu:}{ $1,2,3,4,5,6,\dots $}{$\frac{1}{2},\frac{1}{4},\frac{1}{6},\frac{1}{8},\frac{1}{10},\dots $}{$3,6,9,12,15,18,\dots $}{$5,3,1,-1,-3,-5,\dots $}{$1,-1,1,-1,1,-1,\dots $}{$1,4,9,16,25,36,\dots $} 
+
+		
+		\Zadanietwoxthree{Wyznacz pierwsze 5 wyrazów ciągu o wzorze:}{$a_n=n+5 $}{$a_n=-n+7 $}{$a_n=\frac{1}{2}n+3 $}{$a_n=\sqrt{n-1} $}{$a_n=3^n $}{$a_n=\frac{n+3}{2n+1} $} 
+		
+		\Zadanietwoxthree{Zbadaj monotoniczność ciągu:}{$a_n=n-3 $}{$a_n=2n+1 $}{$a_n=-3n+3 $}{$a_n=n^2+3 $}{$a_n=n^2-5n $}{$a_n=5 $} 
+	
+	\counterreset{counter}
+	\newpage
+	\begin{center}
+		\LARGE Ciąg arytmetyczny
+	\end{center}
+	\vspace{1cm}
+	
+	
+	
+		\Zadanietwoxthree{Które z podanych ciągów są ciągami arytmetycznymi?}
+		{$a_n=3n+1$}{$a_n=7$}
+		{$a_n=5n^2-3$}{$a_n=\sqrt{2}n$}
+		{$a_n=\frac{2n+1}{3}$}{$a_n=2n$} 
+		
+		\Zadanietwoxthree{Wypisz wyrazy $a_3$, $a_7$ i $a_{13}$ ciągu arytmetycznego, gdzie: }
+		{$a_1=-1 \quad r=3$}{$a_1=10 \quad r=-3$}
+		{$a_1=2 \quad a_2=5$}{ $a_1=0 \quad a_2=4$}
+		{$a_1=-1 \quad a_5=7$}{$a_1=5 \quad a_5=3$}
+	
+		\Zadanietwoxtwo{ Wyznacz $a_1$ ciągu arytmetycznego wiedząc, że:}
+		{$a_{22}=-92 \quad r=-3$}{$a_7=37 \quad r=6$}
+		{$a_{39}15 \quad a_{35}=11$}{$a_{30}=4 \quad a_{20}=3$}
+	
+		\ZadanieTextowe{Między liczby 65 i 35 wstaw dziewięć liczb tak, aby liczby te utworzyły ciąg arytmetyczny.}
+		
+		\ZadanieTextowe{Suma czwartego i siódmego wyrazu ciągu arytmetycznego jest równa 86, natomiast suma drugiego i trzynastego jest równa 22. Wyznacz wzór ogólny tego ciągu.}
+		
+		\ZadanieTextowe{Suma dwóch pierwszych wyrazów ciągu arytmetycznego jest równa 27, natomiast suma trzeciego, piątego i siódmego jest równa 9. Wyznacz wzór ogólny tego ciągu.}
+		\newpage
+		\ZadanieTextowe{Widząc, że suma drugiego i dziesiątego wyrazu ciągu arytmetycznego jest równa 10, oblicz szósty wyraz tego ciągu.}
+		
+		 Dla jakich wartości $x$ podany ciąg jest arytmetyczny?
+		\begin{enumerate}[a)]
+			\item $(3;\qquad x ;\qquad 17) $ 
+			\item $(3x+1; \quad 10;\quad 16) $
+			\item $(3x+1; \quad 2x-4; \quad 5x+3) $
+			\item $(x^2+1; \quad 5x-2; \quad2x^2+x+1) $
+		\end{enumerate}
+		\Zadanie{Oblicz sumę:}{	
+			\begin{enumerate}[a)]
+				\item trzydziestu kolejnych liczb będących wielokrotnością liczby 9, z których najmniejszą jest 9
+				\item pięćdziesięciu kolejnych liczb będących wielokrotnością liczby 12, z których najmniejszą jest 24.
+				\item wszystkich liczb całkowitych od 0 do 150 włącznie
+				\item liczb dwucyfrowych podzielnych przez 7
+				\item $3+7+11+15+\dots+103=$
+				\item $29+22+15+8+\dots+(-272)=$
+			\end{enumerate}
+		}
+
+	\Zadanietwoxtwo{Wyznacz liczbę wyrazów ciągu arytmetycznego, mając dane:}
+	{$S_n=407 \quad a_1=62 \quad a_n=12$}{$S_n=420 \quad a_1=62 \quad r=3$}{$S_n=1016,5 \quad a_1=22 \quad a_n=85$}{$S_n=578 \quad a_1=58 \quad a_n=-3$}
+	
+	\counterreset{counter}
+	\newpage
+	\begin{center}
+	\LARGE Ciąg geometryczny
+	\end{center}
+	\vspace{1cm}
+	
+	
+	\Zadanietwoxthree{Wyznacz wzór ogólny ciągu geometrycznego:}
+	{$6,12,24,\dots$}{$6,12,24,\dots$}
+	{$8,-4,2,\dots$}{$\frac{1}{2},\frac{1}{4},\frac{1}{8},\dots$}
+	{$\frac{2}{5},\frac{1}{2},\frac{5}{8},\dots$}{$2,3,4\frac{1}{2},\dots$} 
+
+	\Zadanietwoxtwo{Wypisz pierwsze 5 wyrazów ciągu geometrycznego, gdzie: }{$a_1=1 \quad q=2$}{$a_1=\frac{1}{3} \quad q=3$}{$a_1=2 \quad q=-5$}{$a_1=16 \quad q=\frac{1}{2}$}
+	
+	\Zadanietwoxtwo{Wyznacz iloraz ciągu geometrycznego q, jeśli:}{$a_1=27 \quad a_2=9$}{$a_1=-1 \quad a_{10}=-512$}{$a_2=1 \quad a_4=625$}{ $a_1=16 \quad a_5=\frac{1}{2}$}
+
+	\ZadanieTextowe{Suma trzech wyrazów ciągu geometrycznego jest równa 21, a ich iloczyn jest równy 216. Wyznacz wyrazy tego ciągu.}
+
+
+\end{document}

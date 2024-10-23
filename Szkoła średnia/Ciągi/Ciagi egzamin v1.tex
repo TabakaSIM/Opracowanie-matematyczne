@@ -1,0 +1,210 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+\usepackage{pgf}			% Aktualne rachunki \pgfmathparse{}
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{counter} % Creates a new counter
+	\setcounter{counter}{1} % Sets the counter to 5
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor=gray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Wzor}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\ZadanieTextowe}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Zadanie \counter{counter} } \\
+			#1
+		\end{mdframed}
+	}
+	\newcommand{\Zadanie}[2]{
+		\ZadanieTextowe{#1}
+		#2
+	}
+	\newcommand{\ZadanieABCD}[6]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\
+		\end{tabular}
+	}
+	\newcommand{\ZadanieABCDEF}[8]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\\\
+			\textbf{E. }#7&
+			\textbf{F. }#8\\\\
+		\end{tabular}
+	}
+	
+	\newcommand{\ZadaniePF}[3]{
+		\ZadanieTextowe{#1}
+		\textbf{Wybierz odpowiedź prawda (P) lub fałsz (F).} \\\\
+		\setlength\arrayrulewidth{2pt}
+		\def\arraystretch{2}
+		\begin{tabular}{|p{14cm}| c|c|}\hline
+			#2 & {\Large P} & {\Large F}\\\hline
+			#3 & {\Large P} & {\Large F}\\\hline
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxtwo}[5]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxthree}[7]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxfour}[9]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+			\textbf{g)} #8&
+			\textbf{h)} #9\\\\
+		\end{tabular}
+	}
+	\newcommand{\Informacja}[2]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Informacja do zadań \arabic{counter} - \pgfmathparse{\arabic{counter}+#1-1}\pgfmathprintnumber[assume math mode=true, int detect]{\pgfmathresult}}
+		\end{mdframed}
+		#2
+	}
+	
+	%}
+
+\newcommand{\tg}{\text{tg}}
+\newcommand{\ctg}{\text{ctg}}
+\newcommand{\UkladRownan}[2]{
+	$\left\{
+	\begin{array}{l}
+		#1 \\
+		#2
+	\end{array}
+	\right.$
+}
+
+\begin{document}
+	\begin{center}
+		\LARGE Ciągi - sprawdzian
+	\end{center}
+	\vspace{1.5cm}
+	\begin{tabular}{p{13cm} r}
+		Imię i nazwisko:\dotfill
+		&[....../40pkt]\\ 
+		\vspace{0.5cm}
+	\end{tabular}
+	
+	\ZadanieABCD{Dany jest ciąg arytmetyczny, w którym $a_4=7$ i $a_7=13$}{Wówczas różnica tego ciągu wynosi:}{2}{-2}{6}{-6}
+	\ZadaniePF{Dany jest ciąg określony wzorem $a_n=-8\cdot(-\frac{1}{2})^n$}{Ciag $a_n$ jest ciągiem geometrycznym.}{Ciąg $a_n$ jest ciągiem monotonicznym.}
+	\ZadanieTextowe{Dany jest ciąg arytmetyczny, którego suma trzeciego i piątego wyrazu wynosi -8, natomiast różnica drugiego i dziesiątego wynosi 24. Wyznacz wzór ogólny tego ciągu.}
+	\ZadanieTextowe{Dany jest ciąg określony wzorem $a_n=\frac{5-n}{3}$. Wyznacz pierwsze pięć wyrazów tego ciągu, a następnie określ jego monotoniczność.}
+	\ZadanieABCD{Dany jest ciąg określony wzorem $a_n=n^2-5n$}{Ciąg ten jest:}{rosnący}{malejący}{geometryczny}{niemonotoniczny}
+	\ZadanieTextowe{Dany jest 3-wyrazowy ciąg
+	$$(x+1,\qquad x^2+3,\qquad x^2-2x+11)$$
+	Wyznaczyć dla jakich wartości "x" ciąg ten jest ciągiem arytmetycznym?}
+	\ZadaniePF{Rozpatrzmy ciąg określony wzorem 
+	$$a_n=q^{n-1}
+	$$}{Gdyby q było równe -1 to ciąg ten byłby ciągiem stałym.}{Istnieje ciąg, który jest jednocześnie ciągiem arytmetycznym i ciągiem geometrycznym.}
+	\ZadanieABCD{Dany jest ciąg o wyrazach:
+	$$0,\:3,\:8,\:15,\:24,\:\dots$$}{Wzór tego ciągu to:}{$a_n=n^3$}{$a_n=n^2-1$}{$a_n=(n-1)^2$}{$a_n=n^2-n$}
+	\ZadanieTextowe{Oblicz:
+	$$3+7+11+15+\cdot+191=$$}
+	\ZadanieTextowe{Dany jest trójwyrazowy ciąg arytmetyczny, którego średnia arytmetyczna wynosi 12. Jeżeli pierwszy wyraz tego ciągu zwiększymy o 2, to otrzymamy ciąg geometryczny. Wyznacz ten ciąg.}
+		
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
+			Zadanie&1&2&3&4&5&6&7&8&9&10\\\hline
+			Max&2&2&6&4&2&6&2&2&6&8\\\hline
+			Punkty&&&&&&&&&&\\\hline
+		\end{tabular}
+\end{document}

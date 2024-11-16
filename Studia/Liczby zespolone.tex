@@ -6,7 +6,7 @@
 \usepackage{geometry} 		%Ustawianie marginesow
 \usepackage{graphicx}		%Grafika
 \usepackage{wrapfig}		%Grafika obok textu
-\usepackage{float}			%Allows H in fugire
+\usepackage{float}			%Allows H in figure
 \usepackage{hyperref}		%Allows hyperlinks
 %\pagestyle{empty} 			%usuwa nr strony
 \usepackage{todonotes}		%Todo notatki
@@ -19,12 +19,19 @@
 \usepackage{ifthen}			% If then - funkcje!
 \usepackage{expl3}			% Deklarowanie zmiennych
 \usepackage{pgf}			% Aktualne rachunki \pgfmathparse{}
+\usepackage{amsmath} 		% For mathematical symbols and structures
+\usepackage{amsfonts}		% Zbiór liczb naturalnych + formatowanie
+\usepackage{ulem}			% Przekreślony text
+%\usepackage[colorlinks=true, linkcolor=blue, urlcolor=red, citecolor=green]{hyperref}
+\usepackage{fontawesome5}
+\usepackage{mathtools}
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
 
 %Counter commands{
-	\newcounter{counter} % Creates a new counter
-	\setcounter{counter}{1} % Sets the counter to 5
+	\newcounter{counter}
+	\setcounter{counter}{1} 
+	
 	\newcommand{\counter}[1]{
 		\arabic{#1} \stepcounter{#1} 
 	}
@@ -73,6 +80,36 @@
 	%}
 
 %Zadania templatex%{
+	\newcommand{\Obramowka}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\Komentarz}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Komentarz}\\
+			#1
+		\end{mdframed}
+	}
+	
+	%}
+
+% Set spacing before and after theorems
+\setlength{\theorempreskipamount}{20pt}  % Space above the theorem
+\setlength{\theorempostskipamount}{20pt} % Space below the theorem
+
+\newtheorem{definition}{Definicja}[section]
+
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem{lemma}{Lemat}[section]
+\newtheorem{wniosek}{Wniosek}[theorem]
+\newtheorem{example}{Przykład}[section]
+\newtheorem{exercise}{Ćwiczenie}[section]
+\newtheorem{stwierdzenie}{Stwierdzenie}[section]
+\newtheorem{obserwacja}{Obserwacja}[section]
+
+
+%Zadania templatex%{
 	\newcommand{\Wzor}[1]{
 		\begin{mdframed}[style=wzor]
 			\centering #1
@@ -110,17 +147,6 @@
 			\textbf{F. }#8\\\\
 		\end{tabular}
 	}
-	
-	\newcommand{\ZadaniePF}[3]{
-		\ZadanieTextowe{#1}
-		\textbf{Wybierz odpowiedź prawda (P) lub fałsz (F).} \\\\
-		\setlength\arrayrulewidth{2pt}
-		\def\arraystretch{2}
-		\begin{tabular}{|p{14cm}| c|c|}\hline
-			#2 & {\Large P} & {\Large F}\\\hline
-			#3 & {\Large P} & {\Large F}\\\hline
-		\end{tabular}
-	}
 	\newcommand{\Zadanietwoxtwo}[5]{
 		\ZadanieTextowe{#1}
 		\begin{tabular}{p{7cm} p{7cm}}
@@ -154,17 +180,12 @@
 			\textbf{h)} #9\\\\
 		\end{tabular}
 	}
-	\newcommand{\Informacja}[2]{
-		\begin{mdframed}[style=zadanie]
-			\textbf{Informacja do zadań \arabic{counter} - \pgfmathparse{\arabic{counter}+#1-1}\pgfmathprintnumber[assume math mode=true, int detect]{\pgfmathresult}}
-		\end{mdframed}
-		#2
-	}
-	
 	%}
 
 \newcommand{\tg}{\text{tg}}
 \newcommand{\ctg}{\text{ctg}}
+\newcommand{\witw}{$\Leftrightarrow$}
+\newcommand{\wynika}{$\Rightarrow$}
 \newcommand{\UkladRownan}[2]{
 	$\left\{
 	\begin{array}{l}
@@ -175,38 +196,82 @@
 }
 
 \begin{document}
-	\begin{center}
-		\LARGE Ciągi - sprawdzian
-	\end{center}
-	\vspace{1.5cm}
-	\begin{tabular}{p{13cm} r}
-		Imię i nazwisko:\dotfill
-		&[....../20pkt]\\ 
-		\vspace{0.5cm}
-	\end{tabular}
+	\counterreset{counter}
+	\ZadanieTextowe{Rozwiąż układy równań:}
+	\begin{enumerate}[a)]
+		\item \UkladRownan{(4+2i)x-(3-i)y=2+6i}{(2+3i)x+(4+2i)y=-5-4i}
+		\item \UkladRownan{(3+4i)x-(1-2i)y=5i-5}{(1+2i)x+(3-3i)y=1-i}
+	\end{enumerate}
 	
-	\ZadanieABCD{Dany jest ciąg arytmetyczny, w którym $a_4=7$ i $a_7=13$}{Wówczas różnica tego ciągu wynosi:}{2}{-2}{6}{-6}
-	\ZadaniePF{Dany jest ciąg określony wzorem $a_n=-8\cdot(-\frac{1}{2})^n$}{Ciag $a_n$ jest ciągiem geometrycznym.}{Ciąg $a_n$ jest ciągiem monotonicznym.}
-	\ZadanieTextowe{Dany jest ciąg arytmetyczny, którego suma trzeciego i piątego wyrazu wynosi -8, natomiast różnica drugiego i dziesiątego wynosi 24. Wyznacz wzór ogólny tego ciągu.}
-	\ZadanieTextowe{Dany jest ciąg określony wzorem $a_n=\frac{5-n}{3}$. Wyznacz pierwsze pięć wyrazów tego ciągu, a następnie określ jego monotoniczność.}
-	\ZadanieABCD{Dany jest ciąg określony wzorem $a_n=n^2-5n$}{Ciąg ten jest:}{rosnący}{malejący}{geometryczny}{niemonotoniczny}
-	\ZadanieTextowe{Dany jest 3-wyrazowy ciąg
-	$$(x+1,\qquad x^2+3,\qquad x^2-2x+11)$$
-	Wyznaczyć dla jakich wartości "x" ciąg ten jest ciągiem arytmetycznym?}
-	\ZadaniePF{Rozpatrzmy ciąg określony wzorem 
-	$$a_n=q^{n-1}
-	$$}{Gdyby q było równe -1 to ciąg ten byłby ciągiem stałym.}{Istnieje ciąg, który jest jednocześnie ciągiem arytmetycznym i ciągiem geometrycznym.}
-	\ZadanieABCD{Dany jest ciąg o wyrazach:
-	$$0,\:3,\:8,\:15,\:24,\:\dots$$}{Wzór tego ciągu to:}{$a_n=n^3$}{$a_n=n^2-1$}{$a_n=(n-1)^2$}{$a_n=n^2-n$}
-	\ZadanieTextowe{Oblicz:
-	$$3+7+11+15+\dots+191=$$}
-	\ZadanieTextowe{Dany jest trójwyrazowy ciąg arytmetyczny, którego średnia arytmetyczna wynosi 12. Jeżeli pierwszy wyraz tego ciągu zmniejszymy o 2, to otrzymamy ciąg geometryczny. Wyznacz ten ciąg.}
+	\begin{mdframed}[style=zadanie]
 		\begin{center}
-
-		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
-			Zadanie&1&2&3&4&5&6&7&8&9&10\\\hline
-			Max&1&1&3&2&1&3&1&1&3&4\\\hline
-			Punkty&&&&&&&&&&\\\hline
-		\end{tabular}
+			\textbf{Wzór na postać trygonometryczną }
 		\end{center}
+	\end{mdframed}
+	
+	\Wzor{$z=r(\cos\varphi+i\sin\varphi)$}
+
+	\Zadanietwoxthree{Przedstaw w postaci trygonometrycznej liczby:}
+	{$a+i\sqrt{3}$}{$1+i$}
+	{$-1+\sqrt{3}i$}{$2i$}
+	{$2+\sqrt{3}+i$}{$-3$}
+	
+	\begin{mdframed}[style=zadanie]
+		\begin{center}
+			\textbf{Wzór Moivre'a }
+		\end{center}
+	\end{mdframed}
+	
+	\Wzor{$z^n=|z|^n(\cos n\varphi + i \sin n\varphi)$}
+	
+	\Zadanietwoxtwo{Oblicz:}
+	{$(1+i)^{24}$}{$(1+i\sqrt{3})^{15}$}
+	{$(1-i\sqrt{3})^{15}$}{$(\frac{1-i}{1+i\sqrt{3}})^{20}=$}
+	$$\frac{1}{2^{11}}(1-i\sqrt{3})$$
+	
+	$$arc\tg(-2-\sqrt{3})=-\frac{5}{12}\pi$$
+	\newpage
+	
+	\begin{mdframed}[style=zadanie]
+		\begin{center}
+			\textbf{Wzór na n-ty pierwiastek z liczby zespolonej "a"}
+		\end{center}
+	\end{mdframed}
+	
+	\Wzor{$z_k=\sqrt[n]{|a|}(\cos(\frac{\varphi+2\pi k}{n})+i\sin(\frac{\varphi+2\pi k}{n}))$}
+	gdzie $k=0,1,2,\dots,(n-1)$, $\varphi$ to kąt liczby zespolonej $(\arg a)$
+	
+	\ZadanieTextowe{Oblicz:}
+	\begin{enumerate}[a)]
+		\item $\sqrt{2i}$
+		\item $\sqrt{(3-4i)}$
+		\item $\sqrt[3]{-i}$
+		\item $\sqrt[4]{-81}$
+		\item $\sqrt[4]{-1}$		
+		\item $\sqrt[4]{2+i\sqrt{12}}$
+	\end{enumerate}
+	
+	
+	
+	\ZadanieTextowe{Rozwiąż równania}
+	\begin{enumerate}[a)]
+		\item $|z|+z=1+i$
+		\item $z^2-3iz+4=0$
+		\item $z^4-z^2+1=0$
+		\item $z^3=-8$
+		\item $z^4=1+i\sqrt{3}$
+		\item $z^6=-27$
+	\end{enumerate}
+
+	$$\sum_{n=0}^{\infty}(-1)^n\frac{z^{2n}}{(2n)!}$$
+	
+	$$\sum_{n=0}^{\infty}\frac{2^n}{n^3}z^n$$
+		
+$$\pm \frac{1}{2}(1+\sqrt{3}-i+\sqrt{3}i)$$
+$$\pm \frac{1}{2}(1-\sqrt{3}+i+\sqrt{3}i)$$
+	
+	
+	
+	
+	
 \end{document}

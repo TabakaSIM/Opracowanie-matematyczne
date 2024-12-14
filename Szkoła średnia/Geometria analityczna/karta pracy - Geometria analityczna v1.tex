@@ -18,6 +18,7 @@
 \usepackage{xparse}			% New commands with optional arguments
 \usepackage{ifthen}			% If then - funkcje!
 \usepackage{expl3}			% Deklarowanie zmiennych
+\usepackage{pgf}			% Aktualne rachunki \pgfmathparse{}
 
 \newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
 
@@ -109,6 +110,17 @@
 			\textbf{F. }#8\\\\
 		\end{tabular}
 	}
+	
+	\newcommand{\ZadaniePF}[3]{
+		\ZadanieTextowe{#1}
+		\textbf{Wybierz odpowiedź prawda (P) lub fałsz (F).} \\\\
+		\setlength\arrayrulewidth{2pt}
+		\def\arraystretch{2}
+		\begin{tabular}{|p{14cm}| c|c|}\hline
+			#2 & {\Large P} & {\Large F}\\\hline
+			#3 & {\Large P} & {\Large F}\\\hline
+		\end{tabular}
+	}
 	\newcommand{\Zadanietwoxtwo}[5]{
 		\ZadanieTextowe{#1}
 		\begin{tabular}{p{7cm} p{7cm}}
@@ -142,6 +154,13 @@
 			\textbf{h)} #9\\\\
 		\end{tabular}
 	}
+	\newcommand{\Informacja}[2]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Informacja do zadań \arabic{counter} - \pgfmathparse{\arabic{counter}+#1-1}\pgfmathprintnumber[assume math mode=true, int detect]{\pgfmathresult}}
+		\end{mdframed}
+		#2
+	}
+	
 	%}
 
 \newcommand{\tg}{\text{tg}}
@@ -155,57 +174,66 @@
 	\right.$
 }
 
+
 \begin{document}
 	\begin{center}
-		\LARGE Wielomiany i ułamki algebraiczne
+		\LARGE Geometria analityczna - karta pracy
 	\end{center}
-	\Wzor{Metody rozkładania wielomianów:
-	\begin{enumerate}[1)]
-		\item $\Delta$?
-		\item Wyciąganie czynnika przed nawias
-		\item Metoda podstawiania $(t=x^2)$, $(t=x^3)$
-		\item Metoda grupowania
-		\item Wzory skróconego mnożenia*
-		\item Twierdzenie Bezouta i schemat Hornera
-\end{enumerate}}
-	\Zadanietwoxtwo{Rozłóż na czynniki, a następnie rozwiąż równanie stosując metodę wyciągania czynnika przed nawias:}
-	{$x^4+6x^3+5x^2=0$}{$x^6-4x^4=0$}
-	{$5x^3+20x^2+25x=0$}{$-2x^5-2x^4+24x^3=0$}
-	\Zadanietwoxtwo{Rozłóż na czynniki, a następnie rozwiąż równanie stosując metodę podstawiania:}
-	{$x^4+3x^2-4=0$}{$x^4-13x^2+36=0$}
-	{$x^6-7x^3-8=0$}{$x^5+20x^3+64x=0$}
-	\Zadanietwoxthree{Rozłóż na czynniki, a następnie rozwiąż równanie stosując metodę grupowania:}
-	{$x^3-4x-2x+8=0$}{$x^3+x^2+9x+9=0$}
-	{$2x^3+3x^2-10x-15=0$}{$x^2(x-3)=2(x-3)$}
-	{$3x^4-2x^2-12x+8$}{$4x^4+x^2-36x-9=0$}
+	\vspace{1.5cm}
+	\begin{tabular}{p{13cm} r}
+		Imię i nazwisko:\dotfill
+		&[....../16pkt]\\ 
+		\vspace{0.5cm}
+	\end{tabular}
+	
+	\Zadanie{Uzupełnić tabelkę}{\begin{center}
+			\begin{tabular}{|p{3cm} |p{3cm} |p{3cm} |p{3cm}|}
+			\hline&&&\\
+			$A$ & $B$ & $\overrightarrow{AB}$ & $\overrightarrow{BA}$\\ &&&\\
+			\hline&&&\\
+			$A=(5,-1)$ & $B=(2,5)$ & $\overrightarrow{AB}=[\dots,\dots]$ & $\overrightarrow{BA}=[\dots,\dots]$\\ &&&\\
+			\hline&&&\\
+			$A=(6,-1)$ & $B=(\dots,\dots)$ & $\overrightarrow{AB}=[3,4]$ & $\overrightarrow{BA}=[\dots,\dots]$\\ &&&\\
+			\hline&&&\\
+			$A=(1,-3)$ & $B=(\dots,\dots)$ & $\overrightarrow{AB}=[\dots,\dots]$ & $\overrightarrow{BA}=[8,-5]$\\ &&&\\
+			\hline
+	\end{tabular}
+	\end{center}}
+	
+	\ZadanieABCD{Dany jest trójkąt o wierzchołkach \newline $A=(-2,-1)$, $B=(4,-1)$., $C=(1,5)$.}{Obwód trójkąta wynosi:}{$18$}{$6+6\sqrt{5}$}{$12\sqrt{10}$}{$24$}
+	
+	\ZadanieTextowe{Dany jest równoległobok $ABCD$, gdzie $A=(-1,3)$, $B=(-4,-2)$ oraz punkt $S=(2,2)$ który jest środkiem symetrii tego równoległoboku. Wyznaczyć punkty $C$ i $D$.}
+	
+	\ZadanieTextowe{Wyznaczyć równanie prostej $AB$, dla $A=(-3,-3)$, $B=(6,0)$ oraz naszkicować jej wykres.}
+	
+	\ZadanieTextowe{Wyznaczyć prostą \textbf{równoległą} oraz \textbf{prostopadłą} do prostej $k: \: y=\frac{2}{3}x+\sqrt{3}$ przechodzącą przez punkt $P=(4,1)$.}
+	
 	\newpage
-	\Zadanietwoxthree{Rozłóż na czynniki, a następnie rozwiąż równanie stosując twierdzenie Bezouta i schemat Hornera:}
-	{$x^3-6x^2+5x+12=0$}{$x^3-x^2-15x-25=0$}
-	{$x^4+2x^3-16x^2-2x+15=0$}{$-2x^3+16x^2-40x+32=0$}
-	{$x^4-2x^3-11x^2+12x+36=0$}{$-3x^5-6x^4-18x^3-30x^2-15x=0$}
-	\Zadanietwoxtwo{Wykonaj działanie dodawania/odejmowania (Pamiętaj o określeniu dziedziny!)}
-	{\Large$\frac{2}{x-4}+\frac{x-1}{x+1}=$}
-	{\Large$\frac{x+4}{x-1}-\frac{2}{x+1}=$}
-	{\Large$\frac{x-3}{x^2-2x}+\frac{x+3}{x^2-4}=$}
-	{\Large$\frac{3}{x^2-3x+2}-\frac{x-3}{x^2+4x-5}=$}
-	\Zadanietwoxtwo{Wykonaj działanie mnożenia/dzielenia (Pamiętaj o określeniu dziedziny!)}
-	{\Large$\frac{3x^2+3x}{x^2-1}\cdot\frac{x-1}{9x}=$}
-	{\Large$\frac{2x^2+5x}{x^2+4x+4}:\frac{x^2+6x+9}{x^2-4}=$}
-	{\Large$\frac{3x^2-3}{x^2-4x-5}\cdot\frac{5x-25}{15x-15}=$}
-	{\Large$\frac{x^3-5x^2+2x-10}{x^2+x-30}:\frac{x^3+2x}{x+6}=$}
-	\Zadanietwoxthree{Rozwiąż równanie (Pamiętaj o określeniu dziedziny!)}
-	{\Large$\frac{x+3}{x-3}=0$}{\Large$\frac{(x-2)(4-8x)}{x^-4}=0$}
-	{\Large$\frac{x^2+4}{x^3-4x}=0$}{\Large$\frac{(2x-1)(2x+1)(x-1)}{2x^2-x-1}=0$}
-	{\Large$\frac{x+1}{x+2}=\frac{x+2}{x-3}$}{\Large$\frac{x+3}{x+5}=\frac{x-3}{x-3}$}
-	\newpage
-	\ZadanieABCD{Dany jest wielomian f(x) z parametrem "m":
-	$$x^3-mx^2+11x-28$$
-	Wiemy o tym wielomianie, że jest on podzielny przed dwómian $(x-4)$}{Zatem parametr "m" jest wynosi:}
-	{$m=1$}{$m=5$}
-	{$m=-2$}{$m=-5$}
-	\ZadanieTextowe{Rozwiąż równanie
-	$$-2x^6+4x^4+16x^2=0$$}
-	\ZadanieTextowe{Rozwiąż równanie
-		$$2x^5-6x^3=8x$$}
-	\ZadanieABCD{Dane jest równanie: $$\frac{x^3-4x^2+3x}{(x-1)(x+2)(x-3)}=0$$}{Równanie to ma:}{0 rozwiązań}{1 rozwiązanie}{2 rozwiązania}{3 rozwiązania}
+	
+	\ZadanieABCD{Poniżej przedstawiono interpretację geometryczną układu równań.}
+	{\begin{center}
+			\includegraphics[scale=0.3]{3_1_1.png}
+		\end{center}
+		Układ ten da się zapisać w postaci:}
+	{\UkladRownan{y=x+5}{y=2x-1}}
+	{\UkladRownan{y=-x-5}{y=2x+2}}
+	{\UkladRownan{y=-x+5}{y=\frac{1}{2}x-1}}
+	{\UkladRownan{y=x-5}{y=-\frac{1}{2}x+2}}
+	
+	\ZadanieTextowe{Zapisać wartości parametru "m", dla którego funkcja
+		$$y=(2m-3)x+3m-1$$
+		jest niemalejąca.}
+	
+	\Zadanie{Zapisać równanie okręgu o środku $S=(2,-5)$ i promieniu 6.}{\vspace{0.5cm}	\begin{center}
+			.................................................................................................
+	\end{center}}
+
+	\begin{center}
+		
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|}\hline
+			Zadanie&1&2&3&4&5&6&7&8\\\hline
+			Max&2&1&2&3&3&1&1&2\\\hline
+			Punkty&&&&&&&&\\\hline
+		\end{tabular}
+	\end{center}
 \end{document}

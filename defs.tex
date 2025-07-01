@@ -1,0 +1,144 @@
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in figure
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+\usepackage{pgf}			% Aktualne rachunki \pgfmathparse{}
+\usepackage{amsmath} 		% For mathematical symbols and structures
+\usepackage{amsfonts}		% Zbiór liczb naturalnych + formatowanie
+\usepackage{ulem}			% Przekreślony text
+%\usepackage[colorlinks=true, linkcolor=blue, urlcolor=red, citecolor=green]{hyperref}
+\usepackage{fontawesome5}
+\usepackage{mathtools}
+%\usepackage{multirow} 		% Required for merging rows
+\newcommand{\niton}{\not\owns}
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{definicja}
+	\setcounter{definicja}{1} 
+	
+	\newcounter{twierdzenie}
+	\setcounter{twierdzenie}{1} 
+	
+	\newcounter{przyklady}
+	\setcounter{przyklady}{1} 
+	
+	\newcounter{wnioski}
+	\setcounter{wnioski}{1} 
+	
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=white!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=0,%
+		rightmargin=0,%
+		backgroundcolor=lightgray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=0,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Obramowka}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\Komentarz}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Komentarz}\\
+			#1
+		\end{mdframed}
+	}
+	
+	\newcommand{\Odp}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Odpowiedź}\\
+			#1
+		\end{mdframed}
+	}
+	
+	%}
+
+% Set spacing before and after theorems
+\setlength{\theorempreskipamount}{20pt}  % Space above the theorem
+\setlength{\theorempostskipamount}{20pt} % Space below the theorem
+
+\newtheorem{definition}{Definicja}[section]
+
+\newtheorem{theorem}{Twierdzenie}[section]
+\newtheorem{lemma}{Lemat}[section]
+\newtheorem{wniosek}{Wniosek}[theorem]
+\newtheorem{example}{Przykład}[section]
+\newtheorem{exercise}{Ćwiczenie}[section]
+\newtheorem{stwierdzenie}{Stwierdzenie}[section]
+\newtheorem{obserwacja}{Obserwacja}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc commands{
+	\newcommand{\tg}{\text{tg}}
+	\newcommand{\ctg}{\text{ctg}}
+	\newcommand{\arctg}{\text{arctg}}
+	\newcommand{\arcctg}{\text{arcctg}}
+	
+	\newcommand{\UkladRownan}[2]{
+		\left\{
+		\begin{array}{l}
+			#1 \\
+			#2
+		\end{array}
+		\right.
+	}
+% }Misc commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

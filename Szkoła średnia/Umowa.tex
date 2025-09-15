@@ -1,0 +1,101 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\begin{document}
+	
+	\begin{center}
+		{\LARGE \textbf{Wypełnia rodzic}} \\[1em]
+	\end{center}
+	
+	\textbf{Imię i nazwisko ucznia:} \dotfill 
+	
+	\textbf{Poziom nauczania (zakreśl właściwe):}\\
+	
+	\begin{tabular}{p{7cm} p{7cm}}
+		$\bigcirc$ Poziom podstawowy&$\bigcirc$ Poziom rozszerzony\\
+	\end{tabular}
+	\vspace{1em}
+	
+	\textbf{Poziom zdawanej matury (zakreśl właściwe):}
+	
+	\begin{tabular}{p{7cm} p{7cm}}
+		$\bigcirc$ Poziom podstawowy&$\bigcirc$ Poziom rozszerzony\\
+		$\bigcirc$ Zastanawiam się & \\
+	\end{tabular}
+	\vspace{1em}
+	
+	\textbf{Oczekiwana ocena:} \dots
+	\vspace{1em}
+	
+	\textbf{Oczekiwany wynik z matury: } \dots $\%$ \textbf{ / rozszerzenia: } \dots $\%$
+	
+	\textbf{Zadania domowe (zakreśl właściwe):}
+	\Large{$$\underset{\text{Brak zadań}}{ \bigcirc } - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \underset{\text{Dużo zadań}}{ \bigcirc }$$}\normalsize
+	\vspace{2em}
+	
+	\textbf{Oczekiwania względem nauczyciela:}\\
+	
+	\begin{tabular}{p{7cm} | p{7cm}}
+		$\bigcirc$ Ma wymagać od ucznia & $\bigcirc$ Ma skupiać się tylko na bieżącym materiale \\
+		$\bigcirc$ Ma krzyczeć po uczniu & $\bigcirc$ Ma być cierpliwy i spokojny \\
+		$\bigcirc$ Wychodzić poza materiał szkolny & $\bigcirc$ Skupiać się wyłącznie na podstawie \\
+		$\bigcirc$ Tłumaczyć wiele razy, aż do skutku & $\bigcirc$ Przechodzić szybko do kolejnych zagadnień \\
+		$\bigcirc$ Prowadzić lekcję w formie wykładu & $\bigcirc$ Angażować ucznia do samodzielnego myślenia \\
+		$\bigcirc$ Używać przykładów z życia codziennego & $\bigcirc$ Trzymać się tylko „książkowych” zadań \\
+	\end{tabular}\\
+	
+	
+	\textbf{Uwagi dodatkowe:}\\
+	
+	\dotfill\\
+	
+	\dotfill\\
+	\newpage
+	
+	\begin{center}
+		{\LARGE \textbf{Wypełnia uczeń}} \\[1em]
+	\end{center}
+	
+	\textbf{Poziom nauczania (zakreśl właściwe):}
+	
+	\begin{tabular}{p{7cm} p{7cm}}
+		$\bigcirc$ Poziom podstawowy&$\bigcirc$ Poziom rozszerzony\\
+	\end{tabular}
+	\vspace{1em}
+	
+	\textbf{Poziom zdawanej matury (zakreśl właściwe):}
+	
+	\begin{tabular}{p{7cm} p{7cm}}
+		$\bigcirc$ Poziom podstawowy&$\bigcirc$ Poziom rozszerzony\\
+		$\bigcirc$ Zastanawiam się&\\
+	\end{tabular}
+	\vspace{1em}
+	
+	\textbf{Oczekiwana ocena:} \dots
+	\vspace{1em}
+	
+	\textbf{Oczekiwany wynik z matury: } \dots $\%$ \textbf{ / rozszerzenia: } \dots $\%$
+	
+	\textbf{Zadania domowe (zakreśl właściwe):}
+	\Large{$$\underset{\text{Brak zadań}}{ \bigcirc } - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \underset{\text{Dużo zadań}}{ \bigcirc }$$}
+	\vspace{2em}
+	
+\end{document}

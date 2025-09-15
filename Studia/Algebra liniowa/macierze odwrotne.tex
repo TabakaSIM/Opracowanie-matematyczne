@@ -1,0 +1,389 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{counter} % Creates a new counter
+	\setcounter{counter}{1} % Sets the counter to 5
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor=gray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Wzor}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\ZadanieTextowe}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Zadanie \counter{counter} } \\
+			#1
+		\end{mdframed}
+	}
+	\newcommand{\Zadanie}[2]{
+		\ZadanieTextowe{#1}
+		#2
+	}
+	\newcommand{\ZadanieABCD}[6]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\
+		\end{tabular}
+	}
+	\newcommand{\ZadanieABCDEF}[8]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\\\
+			\textbf{E. }#7&
+			\textbf{F. }#8\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxtwo}[5]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxthree}[7]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxfour}[9]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+			\textbf{g)} #8&
+			\textbf{h)} #9\\\\
+		\end{tabular}
+	}
+	%}
+
+\begin{document}
+	
+	\Zadanie{Wyznaczyć rząd macierzy}{\begin{enumerate}[a)]
+			\item 
+			$\displaystyle A = 
+			\begin{bmatrix}
+				1 & 2 \\
+				3 & 6
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle B = 
+			\begin{bmatrix}
+				1 & 0 \\
+				0 & 1
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle C = 
+			\begin{bmatrix}
+				1 & 2 & 3 \\
+				4 & 5 & 6
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle D = 
+			\begin{bmatrix}
+				1 & 2 & 3 \\
+				2 & 4 & 6 \\
+				3 & 6 & 9
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle E = 
+			\begin{bmatrix}
+				0 & 1 & 2 \\
+				0 & 0 & 0 \\
+				0 & 0 & 1
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle F = 
+			\begin{bmatrix}
+				1 & 2 & 3 & 4 \\
+				0 & 1 & 2 & 3 \\
+				0 & 0 & 1 & 2
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle G = 
+			\begin{bmatrix}
+				2 & 4 & 1 \\
+				0 & 0 & 0 \\
+				1 & 2 & 0
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle H = 
+			\begin{bmatrix}
+				1 & 2 & 3 & 4 \\
+				2 & 4 & 6 & 8 \\
+				0 & 0 & 0 & 0 \\
+				1 & 0 & 1 & 0
+			\end{bmatrix}$
+	\end{enumerate}}
+	
+	\Zadanie{Wyznaczyć macierz odwrotną do podanej macierzy:}{\begin{enumerate}[a)]
+			\item 
+			$\displaystyle A = 
+			\begin{bmatrix}
+				2 & 3 \\
+				1 & 4
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle B = 
+			\begin{bmatrix}
+				5 & -2 \\
+				7 & 1
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle C = 
+			\begin{bmatrix}
+				0 & 1 \\
+				-1 & 2
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle D = 
+			\begin{bmatrix}
+				1 & 2 & 3 \\
+				0 & 1 & 4 \\
+				5 & 6 & 0
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle E = 
+			\begin{bmatrix}
+				3 & 0 & 2 \\
+				2 & 0 & -2 \\
+				0 & 1 & 1
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle F = 
+			\begin{bmatrix}
+				4 & 7 & 2 \\
+				3 & 6 & 1 \\
+				2 & 5 & 3
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle G = 
+			\begin{bmatrix}
+				1 & 0 & 2 & -1 \\
+				3 & 0 & 0 & 5 \\
+				2 & 1 & 4 & -3 \\
+				1 & 0 & 5 & 0
+			\end{bmatrix}$
+			
+			\item 
+			$\displaystyle H = 
+			\begin{bmatrix}
+				2 & 0 & 1 & 3 \\
+				1 & 1 & 0 & 0 \\
+				0 & 2 & 1 & 1 \\
+				4 & 0 & 1 & 2
+			\end{bmatrix}$
+	\end{enumerate}}
+
+	\Zadanie{Rozwiązać równania macierzowe}{\begin{enumerate}[a)]
+			\item 
+			$A X = B$, \quad gdzie
+			$A = \begin{bmatrix}
+				2 & 1 \\
+				3 & 4
+			\end{bmatrix}, \quad
+			B = \begin{bmatrix}
+				1 \\
+				2
+			\end{bmatrix}$
+			
+			\item 
+			$X A = B$, \quad gdzie
+			$A = \begin{bmatrix}
+				1 & 0 \\
+				-2 & 3
+			\end{bmatrix}, \quad
+			B = \begin{bmatrix}
+				4 & 1 \\
+				2 & 0
+			\end{bmatrix}$
+			
+			\item 
+			$A X = C$, \quad gdzie
+			$A = \begin{bmatrix}
+				1 & 2 & 3 \\
+				0 & 1 & 4 \\
+				5 & 6 & 0
+			\end{bmatrix}, \quad
+			C = \begin{bmatrix}
+				1 \\
+				0 \\
+				-1
+			\end{bmatrix}$
+		
+		\item 
+		$A X + B = C$, \quad gdzie
+		\[
+		A = \begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}, \quad
+		B = \begin{bmatrix}
+			1 \\
+			-1
+		\end{bmatrix}, \quad
+		C = \begin{bmatrix}
+			6 \\
+			9
+		\end{bmatrix}
+		\]
+		
+		\item 
+		$X A - B = C$, \quad gdzie
+		\[
+		A = \begin{bmatrix}
+			2 & 0 \\
+			1 & 3
+		\end{bmatrix}, \quad
+		B = \begin{bmatrix}
+			1 & 1 \\
+			0 & 2
+		\end{bmatrix}, \quad
+		C = \begin{bmatrix}
+			3 & 1 \\
+			2 & 4
+		\end{bmatrix}
+		\]
+		
+		\item 
+		$A X - B X = C$, \quad gdzie
+		\[
+		A = \begin{bmatrix}
+			4 & 1 \\
+			0 & 2
+		\end{bmatrix}, \quad
+		B = \begin{bmatrix}
+			1 & 1 \\
+			0 & 1
+		\end{bmatrix}, \quad
+		C = \begin{bmatrix}
+			3 & 0 \\
+			0 & 1
+		\end{bmatrix}
+		\]
+		
+		\item \[
+		AX + C = BX - D
+		\]
+		gdzie:
+		\[
+		A = \begin{bmatrix}
+			2 & 1 \\
+			0 & 3
+		\end{bmatrix}, \quad
+		B = \begin{bmatrix}
+			1 & 4 \\
+			2 & 1
+		\end{bmatrix}, \quad
+		C = \begin{bmatrix}
+			5 & 2 \\
+			1 & -1
+		\end{bmatrix}, \quad
+		D = \begin{bmatrix}
+			3 & 0 \\
+			2 & 4
+		\end{bmatrix}
+		\]
+	\end{enumerate}}
+	
+\end{document}

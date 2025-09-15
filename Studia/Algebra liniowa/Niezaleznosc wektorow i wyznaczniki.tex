@@ -1,0 +1,541 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{counter} % Creates a new counter
+	\setcounter{counter}{1} % Sets the counter to 5
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor=gray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Wzor}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\ZadanieTextowe}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Zadanie \counter{counter} } \\
+			#1
+		\end{mdframed}
+	}
+	\newcommand{\Zadanie}[2]{
+		\ZadanieTextowe{#1}
+		#2
+	}
+	\newcommand{\ZadanieABCD}[6]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\
+		\end{tabular}
+	}
+	\newcommand{\ZadanieABCDEF}[8]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\\\
+			\textbf{E. }#7&
+			\textbf{F. }#8\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxtwo}[5]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxthree}[7]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxfour}[9]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+			\textbf{g)} #8&
+			\textbf{h)} #9\\\\
+		\end{tabular}
+	}
+	%}
+
+\begin{document}
+
+\Zadanie{Wyknać działania:}{
+	\begin{enumerate}[a)]
+		\item $\begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}^T$
+		\item $\begin{bmatrix}
+			1 & 0 & -1 \\
+			2 & 3 & 4
+		\end{bmatrix}^T$
+		\item $\begin{bmatrix}
+			0 & -1 & 2 \\
+			-3 & 4 & -5 \\
+			6 & -7 & 8
+		\end{bmatrix}^T$
+	
+		\item $\begin{bmatrix}
+			5 & 6 & 7 \\
+			8 & 9 & 10
+		\end{bmatrix}^T$
+	
+		\item $\begin{bmatrix}
+			-5 & 0 \\
+			7 & 8
+		\end{bmatrix}^T$
+	
+		\item $\begin{bmatrix}
+			1 & 2 \\
+			3 & 4 \\
+			5 & 6 \\
+			7 & 8
+		\end{bmatrix}^T$
+		
+		\item $\begin{bmatrix}
+			1 & 2 & 3 \\
+			4 & 5 & 6 \\
+			7 & 8 & 9
+		\end{bmatrix}^T$
+		
+		\item $\begin{bmatrix}
+			0 & -1 \\
+			2 & -3 \\
+			4 & -5 \\
+			6 & -7
+		\end{bmatrix}^T$
+		
+		
+	\end{enumerate}
+}\newpage
+
+\Zadanietwoxfour{Sprawdzić niezależność wektorów}{\[
+	\mathbf{v}_1 =
+	\begin{bmatrix}
+		1 \\
+		2
+	\end{bmatrix}, \quad
+	\mathbf{v}_2 =
+	\begin{bmatrix}
+		3 \\
+		4
+	\end{bmatrix}
+	\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	2
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	0 \\
+	1
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	1 \\
+	1
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	0 \\
+	2
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	3 \\
+	1 \\
+	4
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	2 \\
+	1
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	3 \\
+	1 \\
+	-2
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	3 \\
+	-2 \\
+	1
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	2 \\
+	1
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	5 \\
+	2 \\
+	-2
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	6 \\
+	-4 \\
+	-8
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	0 \\
+	0
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	0 \\
+	1 \\
+	0
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	0 \\
+	0 \\
+	1
+\end{bmatrix}, \quad
+\mathbf{v}_4 =
+\begin{bmatrix}
+	1 \\
+	1 \\
+	1
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	2 \\
+	0 \\
+	0
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	5 \\
+	1 \\
+	0 \\
+	0
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	-3 \\
+	-2 \\
+	1 \\
+	0
+\end{bmatrix}
+\]
+}{\[
+\mathbf{v}_1 =
+\begin{bmatrix}
+	1 \\
+	2 \\
+	3 \\
+	4
+\end{bmatrix}, \quad
+\mathbf{v}_2 =
+\begin{bmatrix}
+	2 \\
+	4 \\
+	6 \\
+	8
+\end{bmatrix}, \quad
+\mathbf{v}_3 =
+\begin{bmatrix}
+	3 \\
+	6 \\
+	9 \\
+	12
+\end{bmatrix}
+\]
+}
+	
+	\Zadanie{Rozwiać równania macierzowe}{
+		\begin{enumerate}[a)]
+		\item \[
+		X =
+		\begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}
+		\cdot
+		\begin{bmatrix}
+			0 & 1 \\
+			-1 & 0
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			5 & 6 \\
+			7 & 8
+		\end{bmatrix}
+		\]
+		
+		\item \[
+		X -
+		\begin{bmatrix}
+			1 & 2 \\
+			3 & 4 \\
+			5 & 6
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			7 & 8 \\
+			9 & 10 \\
+			11 & 12
+		\end{bmatrix}
+		-
+		\begin{bmatrix}
+			2 & 1 \\
+			0 & -1 \\
+			3 & 3
+		\end{bmatrix}
+		\]
+		
+		\item \[
+		X -
+		\begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			1 & 0 & -1 \\
+			2 & 3 & 1
+		\end{bmatrix}^T
+		\cdot
+		\begin{bmatrix}
+			4 & 1 & 0 \\
+			0 & -2 & 3 \\
+			5 & 3 & 1
+		\end{bmatrix}
+		\]
+		
+		
+		\item \[
+		X +
+		\begin{bmatrix}
+			1 & 2 \\
+			3 & 4
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			1 & 0 & -1 \\
+			2 & 3 & 1
+		\end{bmatrix}
+		\cdot
+		\begin{bmatrix}
+			1 & 2 \\
+			0 & -1 \\
+			3 & 0
+		\end{bmatrix}
+		\]
+		
+		\item \[
+		\begin{bmatrix}
+			1 & 0 & 2 \\
+			-1 & 3 & 1
+		\end{bmatrix}^\mathrm{T}
+		\cdot
+		\begin{bmatrix}
+			4 & -2 & 0 \\
+			1 & 5 & 3
+		\end{bmatrix}
+		- X =
+		\begin{bmatrix}
+			2 & 1 & 0 \\
+			-3 & 4 & 5 \\
+			6 & -2 & 1
+		\end{bmatrix}
+		\]
+		
+		\end{enumerate}
+	}
+	\Zadanie{Obliczyć wyznacznik macierzy}{
+		\begin{enumerate}[a)]
+			\item Macierze wymariu 2x2:
+			\[
+			\begin{bmatrix}
+				1 & 2 \\
+				3 & 4
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				0 & 5 \\
+				-1 & 3
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				2 & 0 \\
+				0 & 2
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				4 & 1 \\
+				2 & 2
+			\end{bmatrix}
+			\]
+			
+			\item Macierze wymariu 3x3:
+			\[
+			\begin{bmatrix}
+				1 & 0 & 2 \\
+				-1 & 3 & 1 \\
+				0 & 4 & 5
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				2 & -1 & 0 \\
+				1 & 3 & 4 \\
+				0 & 2 & 1
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				0 & 1 & 2 \\
+				3 & 0 & 4 \\
+				1 & 5 & 0
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				1 & 2 & 3 \\
+				0 & 1 & 4 \\
+				5 & 6 & 0
+			\end{bmatrix}
+			\]
+			
+			\item Macierze wymariu 4×4:
+			\[
+			\begin{bmatrix}
+				1 & 0 & 2 & 3 \\
+				0 & 1 & 4 & 5 \\
+				6 & 7 & 0 & 8 \\
+				9 & 10 & 11 & 0
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				2 & 3 & 1 & 0 \\
+				0 & 1 & 4 & 2 \\
+				1 & 0 & 5 & 3 \\
+				4 & 2 & 0 & 1
+			\end{bmatrix}
+			\]
+			
+			\item Dla podanej macierzy $B$ oblicz wyznacznik macierzy $B^TB$ oraz $BB^T$
+			\[
+			\begin{bmatrix}
+				1 & 2 & 3 \\
+				4 & 5 & 6
+			\end{bmatrix}
+			, \quad
+			\begin{bmatrix}
+				0 & 1 & -1 \\
+				2 & 0 & 3
+			\end{bmatrix}
+			\]
+		\end{enumerate}
+		
+	}
+	
+\end{document}

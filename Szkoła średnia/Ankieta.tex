@@ -1,0 +1,92 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\begin{document}
+	
+	\begin{center}
+		{\LARGE \textbf{\underline{Ankieta}}} \\[1em]
+	\end{center}
+
+	\begin{center}
+		{\large \textbf{Wypełnia rodzic}} \\[1em]
+	\end{center}
+	\begin{itemize}
+		\item 
+	
+	\textbf{Poziom nauczania (zakreślić właściwe):}\\
+	
+	\begin{tabular}{p{4cm} p{10cm}}
+		$\bigcirc$ Szkoła podstawowa&$\bigcirc$ Szkoła ponadpostawowa - poziom podstawowy\\
+		$\bigcirc$ Studia&$\bigcirc$ Szkoła ponadpostawowa - poziom rozszerzony
+	\end{tabular}
+	
+	\item \textbf{Ogólna ocena naczuania:}
+	\Large{$$\underset{\text{Negatywne}}{ \bigcirc } - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \underset{\text{Pozytywne}}{ \bigcirc }$$}\normalsize
+	
+	\item \textbf{Uwagi co do korepetytora:}\\
+	
+\begin{tabular}{p{7cm} | p{7cm}}
+	$\bigcirc$ Nie wymaga od ucznia & $\bigcirc$ Wymaga za dużo od ucznia \\&\\
+	$\bigcirc$ Spóźnia się na lekcje & $\bigcirc$ Trudny kontakt z korepetytorem \\&\\
+	$\bigcirc$ Korepetytor bełkocze & $\bigcirc$ Korepetor nie tłumaczy zadań \\&\\
+	$\bigcirc$ Korepetytor mówi w języku niezrozumiałym dla ucznia & $\bigcirc$ Korepetytor uczy materiał wychodzący poza materiał szkolny, a powinien skupić się wyłącznie na materiale szkolnym \\&\\
+	$\bigcirc$ Korepetytor powienien zadawać więcej zadań & $\bigcirc$ Korepetytor powinien zadawać mniej zadań \\&\\
+	$\bigcirc$ Korepetytor mówi nieprawdę i wprowadza w błąd & $\bigcirc$ Korepetytor za często prowadzi pogawędki zamiast skupiać się na nauczaniu \\&\\
+	$\bigcirc$ Korepetytor krzyczy na ucznia & 
+\end{tabular}\\
+
+	
+	\item \textbf{Uwagi dodatkowe:}\\
+	
+	\dotfill\\
+\end{itemize}
+	\newpage
+	
+	\begin{center}
+		{\large \textbf{Wypełnia uczeń}} \\[1em]
+	\end{center}
+\begin{itemize}
+	\item \textbf{Ogólna ocena naczuania:}
+\Large{$$\underset{\text{Negatywne}}{ \bigcirc } - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \qquad\bigcirc\qquad - \underset{\text{Pozytywne}}{ \bigcirc }$$}\normalsize
+\vspace{2em}
+
+	\item \textbf{Uwagi co do korepetytora:}\\
+
+\begin{tabular}{p{7cm} | p{7cm}}
+	$\bigcirc$ Nie wymaga od ucznia & $\bigcirc$ Wymaga za dużo od ucznia \\&\\
+	$\bigcirc$ Spóźnia się na lekcje & $\bigcirc$ Trudny kontakt z korepetytorem \\&\\
+	$\bigcirc$ Korepetytor bełkocze & $\bigcirc$ Korepetor nie tłumaczy zadań \\&\\
+	$\bigcirc$ Korepetytor mówi w języku niezrozumiałym dla ucznia & $\bigcirc$ Korepetytor uczy materiał wychodzący poza materiał szkolny, a powinien skupić się wyłącznie na materiale szkolnym \\&\\
+	$\bigcirc$ Korepetytor powienien zadawać więcej zadań & $\bigcirc$ Korepetytor powinien zadawać mniej zadań \\&\\
+	$\bigcirc$ Korepetytor mówi nieprawdę i wprowadza w błąd & $\bigcirc$ Korepetytor za często prowadzi pogawędki zamiast skupiać się na nauczaniu \\&\\
+	$\bigcirc$ Korepetytor krzyczy na ucznia & 
+\end{tabular}\\
+
+
+	\item \textbf{Uwagi dodatkowe:}\\
+
+\dotfill\\
+
+\dotfill\\
+
+\dotfill\\
+\end{itemize}
+\end{document}

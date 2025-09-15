@@ -1,0 +1,186 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc} %polskie znaki
+\usepackage[T1]{fontenc}	%polskie znaki
+\usepackage{amsmath}		%matematyczne znaczki :3
+\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
+\usepackage{geometry} 		%Ustawianie marginesow
+\usepackage{graphicx}		%Grafika
+\usepackage{wrapfig}		%Grafika obok textu
+\usepackage{float}			%Allows H in fugire
+\usepackage{hyperref}		%Allows hyperlinks
+%\pagestyle{empty} 			%usuwa nr strony
+\usepackage{dsfont}
+\usepackage{todonotes}		%Todo notatki
+\usepackage{lipsum}         %Lorem text
+\usepackage{ntheorem}   	% for theorem-like environments
+\usepackage{mdframed}   	% for framing
+\usepackage{subcaption}		% subfigure (image placing)
+\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
+\usepackage{xparse}			% New commands with optional arguments
+\usepackage{ifthen}			% If then - funkcje!
+\usepackage{expl3}			% Deklarowanie zmiennych
+
+\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+
+%Counter commands{
+	\newcounter{counter} % Creates a new counter
+	\setcounter{counter}{1} % Sets the counter to 5
+	\newcommand{\counter}[1]{
+		\arabic{#1} \stepcounter{#1} 
+	}
+	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
+	%}
+
+%Define styles{
+	\theoremstyle{break}
+	\theoreminframepreskip{0.5cm}
+	\theoremheaderfont{\bfseries}
+	\newmdtheoremenv[%
+	linecolor=white,%
+	innertopmargin=\topskip,
+	shadowsize=0,%
+	innertopmargin=5,%
+	innerbottommargin=5,%
+	leftmargin=10,%
+	rightmargin=10,%
+	backgroundcolor=gray!20,%
+	innertopmargin=0pt,%
+	ntheorem]{zad}{Zadanie}
+	
+	\mdfdefinestyle{zadanie}{
+		linecolor=white,%
+		innertopmargin=5,%
+		innerbottommargin=5,%
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor=gray!20,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		skipabove = 5,
+	}
+	\mdfdefinestyle{wzor}{
+		linecolor=cyan,%
+		linewidth=2pt,%
+		innertopmargin=8,
+		innerbottommargin=8,
+		leftmargin=10,%
+		rightmargin=10,%
+		backgroundcolor = white, 
+		fontcolor = black,
+		skipabove = 5,
+		skipbelow = 5,
+	}
+	%}
+
+%Zadania templatex%{
+	\newcommand{\Wzor}[1]{
+		\begin{mdframed}[style=wzor]
+			\centering #1
+		\end{mdframed}
+	}
+	\newcommand{\ZadanieTextowe}[1]{
+		\begin{mdframed}[style=zadanie]
+			\textbf{Zadanie \counter{counter} } \\
+			#1
+		\end{mdframed}
+	}
+	\newcommand{\Zadanie}[2]{
+		\ZadanieTextowe{#1}
+		#2
+	}
+	\newcommand{\ZadanieABCD}[6]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\
+		\end{tabular}
+	}
+	\newcommand{\ZadanieABCDEF}[8]{
+		\ZadanieTextowe{#1}
+		#2 \\\\
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{A. }#3&
+			\textbf{B. }#4\\\\
+			\textbf{C. }#5&
+			\textbf{D. }#6\\\\
+			\textbf{E. }#7&
+			\textbf{F. }#8\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxtwo}[5]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxthree}[7]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+		\end{tabular}
+	}
+	\newcommand{\Zadanietwoxfour}[9]{
+		\ZadanieTextowe{#1}
+		\begin{tabular}{p{7cm} p{7cm}}
+			\textbf{a)} #2&
+			\textbf{b)} #3\\\\
+			\textbf{c)} #4&
+			\textbf{d)} #5\\\\
+			\textbf{e)} #6&
+			\textbf{f)} #7\\\\
+			\textbf{g)} #8&
+			\textbf{h)} #9\\\\
+		\end{tabular}
+	}
+	%}
+
+\begin{document}
+	
+\ZadanieTextowe{Wypisać wszystkie wysokości trójkąta prostokątnego o bokach $6\text{ cm}$ i $8\text{ cm}$.}
+
+\ZadanieTextowe{Odpowiedzieć na pytania Prawda/Fałsz}
+
+\vspace{0.5cm}
+\begin{tabular}{|p{12.5cm}|p{1cm}|p{1cm}|}
+	\hline
+	\begin{flushleft}
+		Prawdziwe jest równanie $\sqrt{8}+\sqrt{8}=\sqrt{32}$
+	\end{flushleft}&\begin{center}
+		\textbf{P}
+	\end{center}&\begin{center}
+		\textbf{F}
+	\end{center}\\
+	\hline
+	\begin{flushleft}
+		Wyrażenie $7-5\sqrt{2}$ jest dodatnie.
+	\end{flushleft}&\begin{center}
+		\textbf{P}
+	\end{center}&\begin{center}
+		\textbf{F}
+	\end{center}\\
+	\hline
+\end{tabular}
+
+\ZadanieTextowe{W konkursie matematycznym było 20 zadań, za dobrą odpowiedź dostawało się 5 punktów, a za złą lub jej brak traciło 2 punkty. Romek zdobył w tym konkursie 72 punkty. Obliczyć, na ile zadań odpowiedział poprawnie?}
+
+\ZadanieTextowe{Biznesmen zapłacił za obiad 300~zł wraz z 20\% napiwkiem. Obliczyć, jaka była cena obiadu bez napiwku?}
+
+\ZadanieABCD{W sierpniu cena pewnej hulajnogi elektrycznej wzrosła o 25\%, natomiast we wrześniu cena ta zmalała o 20\%. Dokończyć zdanie:}{Cena tej hulajnogi po drugiej zmianie względem ceny początkowej:}{zwiększyła się}{zmniejszyła się}{jest taka sama}{nie da się ustalić}
+
+\ZadanieTextowe{Prędkość rozchodzenia się impulsu elektrycznego u człowieka wynosi około $2 \text{ m/s}$. U roślin impuls elektryczny może rozchodzić się z prędkością około $60 \text{ cm/min}$. \\\\ Obliczyć, ile razy prędkość rozchodzenia się impulsu elektrycznego u człowieka jest większa od prędkości rozchodzenia się impulsu elektrycznego u roślin.}
+
+\ZadanieTextowe{Uzasadnić, że suma trzech kolejnych liczb naturalnych jest podzielna przez 3.}
+
+	
+\end{document}

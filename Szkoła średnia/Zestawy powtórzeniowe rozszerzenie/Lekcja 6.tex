@@ -1,184 +1,52 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc} %polskie znaki
-\usepackage[T1]{fontenc}	%polskie znaki
-\usepackage{amsmath}		%matematyczne znaczki :3
-\usepackage{enumerate}		%Dodatkowe opcje do funkcji enumerate
-\usepackage{geometry} 		%Ustawianie marginesow
-\usepackage{graphicx}		%Grafika
-\usepackage{wrapfig}		%Grafika obok textu
-\usepackage{float}			%Allows H in fugire
-\usepackage{hyperref}		%Allows hyperlinks
-%\pagestyle{empty} 			%usuwa nr strony
-\usepackage{todonotes}		%Todo notatki
-\usepackage{lipsum}         %Lorem text
-\usepackage{ntheorem}   	% for theorem-like environments
-\usepackage{mdframed}   	% for framing
-\usepackage{subcaption}		% subfigure (image placing)
-\usepackage{pdfcomment}		% Komentarze (z bazowego pdf'a)
-\usepackage{xparse}			% New commands with optional arguments
-\usepackage{ifthen}			% If then - funkcje!
-\usepackage{expl3}			% Deklarowanie zmiennych
 
-\newgeometry{tmargin=2cm, bmargin=2cm, lmargin=2cm, rmargin=2cm} 
+\input{/home/tabaka/Documents/GitHub/Defs/defs.tex}
 
-%Counter commands{
-	\newcounter{counter} % Creates a new counter
-	\setcounter{counter}{1} % Sets the counter to 5
-	\newcommand{\counter}[1]{
-		\arabic{#1} \stepcounter{#1} 
-	}
-	\newcommand{\counterreset}[1]{\setcounter{#1}{1}}
-	%}
-
-%Define styles{
-	\theoremstyle{break}
-	\theoreminframepreskip{0.5cm}
-	\theoremheaderfont{\bfseries}
-	\newmdtheoremenv[%
-	linecolor=white,%
-	innertopmargin=\topskip,
-	shadowsize=0,%
-	innertopmargin=5,%
-	innerbottommargin=5,%
-	leftmargin=10,%
-	rightmargin=10,%
-	backgroundcolor=gray!20,%
-	innertopmargin=0pt,%
-	ntheorem]{zad}{Zadanie}
-	
-	\mdfdefinestyle{zadanie}{
-		linecolor=white,%
-		innertopmargin=5,%
-		innerbottommargin=5,%
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor=gray!20,%
-		innertopmargin=8,
-		innerbottommargin=8,
-		skipabove = 5,
-	}
-	\mdfdefinestyle{wzor}{
-		linecolor=cyan,%
-		linewidth=2pt,%
-		innertopmargin=8,
-		innerbottommargin=8,
-		leftmargin=10,%
-		rightmargin=10,%
-		backgroundcolor = white, 
-		fontcolor = black,
-		skipabove = 5,
-		skipbelow = 5,
-	}
-	%}
-
-%Zadania templatex%{
-	\newcommand{\Wzor}[1]{
-		\begin{mdframed}[style=wzor]
-			\centering #1
-		\end{mdframed}
-	}
-	\newcommand{\ZadanieTextowe}[1]{
-		\begin{mdframed}[style=zadanie]
-			\textbf{Zadanie \counter{counter} } \\
-			#1
-		\end{mdframed}
-	}
-	\newcommand{\Zadanie}[2]{
-		\ZadanieTextowe{#1}
-		#2
-	}
-	\newcommand{\ZadanieABCD}[6]{
-		\ZadanieTextowe{#1}
-		#2 \\\\
-		\begin{tabular}{p{7cm} p{7cm}}
-			\textbf{A. }#3&
-			\textbf{B. }#4\\\\
-			\textbf{C. }#5&
-			\textbf{D. }#6\\
-		\end{tabular}
-	}
-	\newcommand{\ZadanieABCDEF}[8]{
-		\ZadanieTextowe{#1}
-		#2 \\\\
-		\begin{tabular}{p{7cm} p{7cm}}
-			\textbf{A. }#3&
-			\textbf{B. }#4\\\\
-			\textbf{C. }#5&
-			\textbf{D. }#6\\\\
-			\textbf{E. }#7&
-			\textbf{F. }#8\\\\
-		\end{tabular}
-	}
-	\newcommand{\Zadanietwoxtwo}[5]{
-		\ZadanieTextowe{#1}
-		\begin{tabular}{p{7cm} p{7cm}}
-			\textbf{a)} #2&
-			\textbf{b)} #3\\\\
-			\textbf{c)} #4&
-			\textbf{d)} #5\\\\
-		\end{tabular}
-	}
-	\newcommand{\Zadanietwoxthree}[7]{
-		\ZadanieTextowe{#1}
-		\begin{tabular}{p{7cm} p{7cm}}
-			\textbf{a)} #2&
-			\textbf{b)} #3\\\\
-			\textbf{c)} #4&
-			\textbf{d)} #5\\\\
-			\textbf{e)} #6&
-			\textbf{f)} #7\\\\
-		\end{tabular}
-	}
-	\newcommand{\Zadanietwoxfour}[9]{
-		\ZadanieTextowe{#1}
-		\begin{tabular}{p{7cm} p{7cm}}
-			\textbf{a)} #2&
-			\textbf{b)} #3\\\\
-			\textbf{c)} #4&
-			\textbf{d)} #5\\\\
-			\textbf{e)} #6&
-			\textbf{f)} #7\\\\
-			\textbf{g)} #8&
-			\textbf{h)} #9\\\\
-		\end{tabular}
-	}
-	%}
-
-\newcommand{\tg}{\text{tg}}
-\newcommand{\ctg}{\text{ctg}}
+\setcounter{zadaniaRozdzial}{6}
 
 \begin{document}
+	
 	\begin{center}
-	\LARGE Lekcja 6 - równanie i nierówności trygonometryczne
-\end{center}
-\Zadanietwoxfour{Rozwiąż równania:}
-{$\sin(x)=1$}{$\cos x = -1$}
-{$\sin x = 0$}{$\cos x = 0$}
-{$\sin x = \frac{1}{2}$}{$\sin x = -\frac{\sqrt{2}}{2}$}
-{$\cos x = \frac{\sqrt{3}}{2}$}{$\cos x = -\frac{1}{2}$}
+		\LARGE Zadania na lekcje 6
+	\end{center}
+	\vspace{1.5cm}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania sprowadzając je do postaci funkcji kwadratowej/wielomianowej:}{$2\sin^2x-\sin x = 1$}{$-\cos^2x-2\sin x = 2$}{$\tg^2x - 2\tg x = 3$}{$\frac{-2\cos^2x-\sin x + 1}{\sin^2 x}=0$}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania poprzez grupowanie/wyciąganie przed nawias:}{$\sin^2x\cos^2x-\sin^2x-\cos x +1 =0$}{$2\sin x \cos x - \frac{\sqrt{3}}{2}\cos x + \frac{\sqrt{3}}{2} \sin x - \frac{3}{4}=0$}{$\cos^2x\sin x+\sin^2x -\sin x = 0$}{$\cos x \cdot \sin(\frac{x}{2}-\frac{\pi}{4})=\cos x$}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania:}{$\cos(x+\frac{\pi}{3})\sin(x+\frac{\pi}{3})=\frac{1}{2}$}{$\cos(x-\frac{\pi}{6})=\sin x$}{$\sin x \cdot \tg \frac{x}{2}=1$}{$\sin^43x+\cos^43x=\frac{1}{2}$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$\sin x + \sqrt{3}\cos x =1$$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$|\tg x|-\tg x = \ctg x$$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$\frac{1-\cos8x}{1-\tg x}=0$$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$\frac{\sin x}{\cos x} + \frac{\cos x}{\sin x}=\frac{8\sin 2x}{3}$$}
+	
+	\newpage
+	
+	\begin{center}
+		\LARGE Zadania domowe - lekcja 6
+	\end{center}
+	\vspace{1.5cm}
+	
+	\setcounterref{zadaniaIndex}{0}
+	
+	\ZbiorZadanie{Udowodnij, że poniższe równanie jest tożsamością trygonometryczną.
+	$$\sin^4x+\sin^2x\cos^2x+\cos^2x = 1$$}
 
-\Zadanietwoxthree{Rozwiąż równania:}
-{$\sin(2x+\pi) = 1$}{$\cos(\frac{1}{2}x+\frac{\pi}{2})=\frac{1}{2}$}
-{$\sin(4x-2\pi)=-1$}{$\sin(x-\frac{\pi}{2})=0$}
-{$\cos(2x-\frac{\pi}{4})=-\frac{\sqrt{2}}{2}$}{$\sin(3x-3)=3$}
-
-\Zadanietwoxtwo{Rozwiąż równania:}
-{$\tg x = \sqrt{3}$}{$\tg x = -1$}
-{$\tg (2x+\pi)=-\frac{\sqrt{3}}{3}$}{$\ctg (3x-\frac{\pi}{2})=-1$}
-
-\Zadanietwoxfour{Rozwiąż równania}
-{$2\sin (2x)=-1$}{$|\sin x| = 1$}
-{$\sin^2x + 4\sin x +3 = 0$}{$\sin (2x) = \frac{1}{2}$}
-{$2\sin^2(3x)+\cos(3x)-2=0$}{$2\sin x \cos x - 2\sin x + \cos x = 1$}
-{$2\sin^3x-3\sin x \cos x=0$}{$\frac{2\sin x\cos x - 1}{2\cos x+\sin x}=\frac{1}{\sin x}-\sin x$}
-\newpage
-\ZadanieTextowe{Rozwiąż równania:}
-\begin{enumerate}[a)]
-	\item $\sin x - \sin (2x)=0$
-	\item $2\cos^2x - 3\sin x = -3$
-	\item $\sin(3x)-\sqrt{3}\cos(3x)=1$
-	\item $\sin(6x)+\sqrt{3}\sin(5x)+\sin(4x)=0$
-	\item $\sin(2x)+\cos(2x)=1 + \sin x - \cos x$
-	\item $\sin(5x)+\cos x = 0$
-\end{enumerate}
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania:}{$\sin^3x+2\sin^2x=0$}{$2\cos^2x+2\sqrt{2}\sin x=3$}{$\ctg^4x-3=2\ctg^2x$}{$2\sin^23x+\cos 3x-2=0$}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania:}{$2\sin x \cos x - 2\sin x +\cos x = 1$}{$\ctg x = 2\sin x - \frac{1}{\sin x}$}{$\frac{\cos^2x-1}{\sin x}+\sin^3x=0$}{$-1=\frac{(\sin(x+\frac{\pi}{2})-1)(\sin(\frac{\pi}{2}-x)+1)}{\sin^2x}$}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąż równania:}{$\sin 2x = \sin x$}{$\sin^2x-\cos2x = 2$}{$\sin x \sin2x = \cos x \cos2x$}{$\sin^22x+4\cos2x=4$}
+	
+	\ZbiorZadanieTwoXTwo{Rozwiąz równania:}{$\frac{1}{2}\cos x - \frac{\sqrt{3}}{2}\sin x=1$}{$2\cos x + 3 = 4\cos\frac{x}{2}$}{$\cos x \cdot\sin 7x = \cos 3x \cdot \sin 5x$}{$\sin x + \sin 3x + \sin 5x = 0$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$\cos 2x + 2 = 3|\cos x|$$}
+	
+	\ZbiorZadanie{Rozwiąż równanie: $$\sin x=\frac{|x|}{x}$$}
+	
 \end{document}
